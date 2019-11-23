@@ -41,7 +41,7 @@ function setaCubo() {
 
     cubo.rigth[0] = [0, 5, 4]
     cubo.rigth[1] = [3, 3, 0]
-    cubo.rigth[2] = [2, 0, 4]
+    cubo.rigth[2] = [1, 0, 4]
 
     cubo.top[0] = [5, 5, 5]
     cubo.top[1] = [2, 4, 5]
@@ -66,7 +66,7 @@ function createMatriz(color) {
 }
 
 function createMoves() {
-    cubo.topRigth = () => {
+    cubo.topLeft = () => {
         const move = {}
         move.top = createMatriz(0)
         let top = cubo.top
@@ -97,7 +97,7 @@ function createMoves() {
         renderizaCubo()
     }
 
-    cubo.rigthTop = () => {
+    cubo.leftTop = () => {
         const move = {}
         move.left = createMatriz(0)
         let left = cubo.left
@@ -149,8 +149,38 @@ function createMoves() {
         renderizaCubo()
     }
 
-    cubo.bottonLeft = () =>{
+    cubo.bottonRigth = () =>{
+        const move = {}
+        move.botton = createMatriz(0)
+        let botton = cubo.botton
         
+        move.front = cubo.front[2]
+        move.left = cubo.left[2]
+        move.back = cubo.back[0]
+        move.rigth = cubo.rigth[2]
+
+        move.back = move.back.reverse()
+
+        cubo.front[2] = move.left
+        cubo.rigth[2] = move.front
+        cubo.back[0] = move.rigth
+        if(cont[1] === 0){
+            cubo.left[2] = move.back
+            cont[1]++
+        }else{
+            move.back = move.back.reverse()
+            cubo.left[2] = move.back
+        }
+
+        for(let i = 0; i < HEIGTH; i++){
+            for(let j = 0; j < WiDTH; j++){
+                move.botton[i][j] = botton[j][2 - i]
+            }
+        }
+
+        cubo.botton = move.botton
+
+        renderizaCubo()
     }
 
 }
