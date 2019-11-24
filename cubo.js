@@ -79,7 +79,7 @@ function createMoves() {
         cubo.front[0] = move.rigth
         cubo.left[0] = move.front
         cubo.back[2] = move.left.reverse()
-        if (cont[0] === 0) {
+        if (cont[0] % 4 !== 0) {
             cubo.rigth[0] = move.back
             cont[0]++
         } else {
@@ -159,17 +159,14 @@ function createMoves() {
         move.back = cubo.back[0]
         move.rigth = cubo.rigth[2]
 
-        move.back = move.back.reverse()
-
         cubo.front[2] = move.left
         cubo.rigth[2] = move.front
-        cubo.back[0] = move.rigth
-        if (cont[1] === 0) {
+        cubo.back[0] = move.rigth.reverse()
+        if (cont[1] % 4 !== 0) {
             cubo.left[2] = move.back
             cont[1]++
         } else {
-            move.back = move.back.reverse()
-            cubo.left[2] = move.back
+            cubo.left[2] = move.back.reverse()
         }
 
         for (let i = 0; i < HEIGTH; i++) {
