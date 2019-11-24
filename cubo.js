@@ -8,7 +8,6 @@ let cont = new Array()
 function main() {
     criaFace()
     createMoves()
-    setaCubo()
 }
 
 function criaFace() { //cria o vetor
